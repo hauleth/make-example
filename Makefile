@@ -17,4 +17,4 @@ $(OUT)/%: $(OBJ) exec/%.o
 	$(CC) -o $@ $+
 
 clean:
-	rm -rf $(OUT) $(OBJ) $(BIN)
+	rm -rf $(OUT) exec/*.o src/*.o
