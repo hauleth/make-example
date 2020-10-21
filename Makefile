@@ -1,23 +1,20 @@
+OUT = bin
+
 SRC = $(wildcard src/*.c)
+OBJ = $(SRC:.c=.o)
 EXEC = $(wildcard exec/*.c)
-
-SRC_O = $(SRC:.c=.o)
-EXEC_O = $(EXEC:.c=.o)
-
-BIN = bin
-
-BIN_O = $(EXEC_O:exec/%.o=bin/%)
+BIN = $(EXEC:exec/%.c=$(OUT)/%)
 
 CFLAGS := -I ./include
 LFLAGS :=
 
 .PHONY: all clean
 
-all: $(BIN_O)
+all: $(BIN)
 
-$(BIN)/%: $(SRC_O) exec/%.o
+$(OUT)/%: $(OBJ) exec/%.o
 	@mkdir -p $(@D)
 	$(CC) -o $@ $+
 
 clean:
-	rm -rf $(BIN) $(SRC_O) $(EXEC_O)
+	rm -rf $(OUT) $(OBJ) $(BIN)
