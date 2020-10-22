@@ -5,8 +5,7 @@ OBJ = $(SRC:.c=.o)
 EXEC = $(wildcard exec/*.c)
 BIN = $(EXEC:exec/%.c=$(OUT)/%)
 
-CFLAGS := -I ./include
-LFLAGS :=
+CFLAGS := -I $(PWD)/include ${CFLAGS}
 
 .PHONY: all clean
 
